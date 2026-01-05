@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff5f9e, #ff85b3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .page {
+        display: none;
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
+
+    .active {
+        display: block;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+        margin-bottom: 25px;
+    }
+
+    button {
+        padding: 14px 34px;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    .yes {
+        background: #ff2f6d;
+        color: white;
+    }
+
+    .no {
+        background: white;
+        color: #ff2f6d;
+    }
+
+    .message {
+        font-size: 1.5rem;
+        max-width: 650px;
+        margin: auto;
+        line-height: 1.6;
+    }
+
+    /* Firecrackers */
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(800px) rotate(720deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="abhi_na_jao.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+    <h1>Will you be my better half for the rest of my life? 💍❤️</h1>
+    <button class="yes" onclick="goYes()">YES</button>
+    <button class="no" onclick="goNo()">NO</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+    <h1>You said YES 😭❤️🎉</h1>
+
+    <div class="message">
+        i like loving you anshuuu 😭❤️<br>
+        i promise to stick around till eternity jaana ❤️
+    </div>
+</div>
+
+<script>
+function goNo() {
+    alert("Not a correct choice 😜 Please select again!");
+}
+
+function goYes() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.6;
+    music.currentTime = 0;
+    music.play().catch(() => {});
+
+    launchConfetti();
+}
+
+function launchConfetti() {
+    for (let i = 0; i < 160; i++) {
+        let c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * window.innerWidth + "px";
+        c.style.top = "-10px";
+        c.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+        c.style.animationDuration = (Math.random()*2 + 2) + "s";
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>
